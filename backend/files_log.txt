@@ -1,0 +1,57 @@
+Array
+(
+    [attachment_of_test] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/php5FALel
+            [error] => 0
+            [size] => 595399
+        )
+
+    [attachment_of_validity] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/phpJB15Gv
+            [error] => 0
+            [size] => 595399
+        )
+
+    [iso_file] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/phpCMZp3Z
+            [error] => 0
+            [size] => 595399
+        )
+
+    [is_code_file] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/phpUMtSdR
+            [error] => 0
+            [size] => 595399
+        )
+
+    [dmrc_proof_file] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/phpExI2J5
+            [error] => 0
+            [size] => 595399
+        )
+
+    [attachment_of_registration] => Array
+        (
+            [name] => NSIT Delhi ADMIT CARD.pdf
+            [type] => application/pdf
+            [tmp_name] => /Applications/XAMPP/xamppfiles/temp/phpvvALQC
+            [error] => 0
+            [size] => 595399
+        )
+
+)

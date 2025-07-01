@@ -1,0 +1,30 @@
+[29-Jun-2025 15:06:26 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 50, 'Outside India', '50', 600, '2324bsf', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Interior', 1, '123456_DMRC.pdf', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '9319126604', 'Not provided', 'name', '2025-06-18', 'YES', 'YES', 'hesq', '2025-06-28', '123456_VALIDITY...', 'asdas', 'dasda', '123456_TEST.pdf', 'YES', 'sadasd', '', 'sadasd', '123456_REGISTRA...', 'YES', '2025-07-01')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116
+[29-Jun-2025 15:06:52 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 50, 'Outside India', '50', 600, '2324bsf', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Interior', 1, '123456_DMRC.pdf', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '9319126604', 'Not provided', 'name', '2025-06-18', 'YES', 'YES', 'hesq', '2025-06-28', '123456_VALIDITY...', 'asdas', 'dasda', '123456_TEST.pdf', 'YES', 'sadasd', '', 'sadasd', '123456_REGISTRA...', 'YES', '2025-07-01')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116
+[29-Jun-2025 15:08:48 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 50, 'Outside India', '50', 600, '2324bsf', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Interior', 1, '123456_DMRC.pdf', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '9319126604', 'Not provided', 'name', '2025-06-18', 'YES', 'YES', 'hesq', '2025-06-28', '123456_VALIDITY...', 'asdas', 'dasda', '123456_TEST.pdf', 'YES', 'sadasd', '', 'sadasd', '123456_REGISTRA...', 'YES', '2025-07-01')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116
+[29-Jun-2025 15:09:55 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 60, 'India', '45', 56, 'ascdafsd', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Exterior', 0, '', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '500000', 'Not provided', 'wq', '2025-06-27', 'YES', 'YES', 'adasd', '2025-06-27', '123456_VALIDITY...', 'dasdas', 'sadsa', '123456_TEST.pdf', 'YES', 'sadqdasd', '', '', '', '', '2025-07-04')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116
+[29-Jun-2025 15:10:10 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 60, 'India', '45', 56, 'ascdafsd', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Exterior', 1, '123456_DMRC.pdf', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '500000', 'Not provided', 'wq', '2025-06-27', 'YES', 'YES', 'adasd', '2025-06-27', '123456_VALIDITY...', 'dasdas', 'sadsa', '123456_TEST.pdf', 'YES', 'sadqdasd', '', 'dasdas', '123456_REGISTRA...', 'YES', '2025-07-04')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116
+[29-Jun-2025 15:10:22 Europe/Berlin] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php:116
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php(116): mysqli_stmt->bind_param('sississsisissss...', '', 60, 'India', '45', 56, 'ascdafsd', '123456_ISCODE.p...', 1, '123456_ISO.pdf', 'Exterior', 1, '123456_DMRC.pdf', '123456', 'Architecture', 'DMRC', 'vineet.yadav_ug...', '500000', 'Not provided', 'wq', '2025-06-27', 'YES', 'YES', 'adasd', '2025-06-27', '123456_VALIDITY...', 'dasdas', 'sadsa', '123456_TEST.pdf', 'YES', 'sadqdasd', '', 'dasdas', '123456_REGISTRA...', 'YES', '2025-07-04')
+#1 {main}
+  thrown in /Applications/XAMPP/xamppfiles/htdocs/DMRC/arch.php on line 116

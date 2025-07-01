@@ -1,0 +1,31 @@
+Array
+(
+    [UserId] => 123456
+    [Department] => Architecture
+    [company_name] => DMRC
+    [company_email] => vineet.yadav_ug23@nsut.ac.in
+    [company_address] => Not provided
+    [manufacturing_years] => 60
+    [contact_details] => 500000
+    [is_blacklisted] => 2025-07-04
+    [material_category] => wq
+    [production_capacity] => 45
+    [is_code] => ascdafsd
+    [iso_certified] => true
+    [validity_iso_certificate] => 2025-06-27
+    [accredited_with_NABL] => YES
+    [validity_of_test] => 2025-06-27
+    [name_of_laboratory] => dasdas
+    [SRI_value] => sadqdasd
+    [application_area] => Exterior
+    [registered_as_green_material] => YES
+    [test_name] => sadsa
+    [standard_test] => adasd
+    [comply_with_internation_codes] => YES
+    [lifespan] => 56
+    [material_origin] => India
+    [used_in_dmrc] => true
+    [registered_with_governement] => NO
+    [contract_value] => dasdas
+    [already_executed_with_government] => YES
+)
