@@ -24,8 +24,8 @@ switch ($filter) {
         $sql = "SELECT * FROM application 
                 WHERE department = 'Architecture' 
                 AND status0 = 'Approved' 
-                AND status1 = 'Pending' 
-                AND status2 != 'Rejected'";
+                AND status1 = 'Approved' 
+                AND status2 = 'Pending'";
         break;
 
     case 'approved':
@@ -34,7 +34,7 @@ switch ($filter) {
                 WHERE department = 'Architecture' 
                 AND status0 = 'Approved' 
                 AND status1 = 'Approved' 
-                AND status2 != 'Rejected'";
+                AND status2 = 'Approved'";
         break;
 
     case 'rejected':
@@ -42,14 +42,16 @@ switch ($filter) {
         $sql = "SELECT * FROM application 
                 WHERE department = 'Architecture' 
                 AND status0 = 'Approved' 
-                AND (status1 = 'Rejected' OR status2 = 'Rejected')";;
+                AND status1 = 'Approved' 
+                AND status2 = 'Rejected'";;
         break;
 
     case 'total':
-        // All applications that are not rejected at first level
+        // All applications that are not rejected at first level and approved at second level
         $sql = "SELECT * FROM application 
                 WHERE department = 'Architecture' 
-                AND status0 = 'Approved'";
+                AND status0 = '!Rejected'
+                AND status1 = 'Rejected'";
         break;
 
     case 'dashboard':
@@ -58,27 +60,30 @@ switch ($filter) {
         $totalQuery = "SELECT COUNT(*) as count 
                        FROM application 
                        WHERE department = 'Architecture' 
-                       AND status0 = 'Approved'";
+                       AND status0 = 'Approved'
+                       AND status1 = 'Approved'
+                       ";
 
         $pendingQuery = "SELECT COUNT(*) as count 
                          FROM application 
                          WHERE department = 'Architecture' 
                          AND status0 = 'Approved' 
-                         AND status1 = 'Pending' 
-                         AND status2 != 'Rejected'";
+                         AND status1 = 'Approved' 
+                         AND status2 = 'Pending'";
 
         $approvedQuery = "SELECT COUNT(*) as count 
                           FROM application 
                           WHERE department = 'Architecture' 
                           AND status0 = 'Approved' 
                           AND status1 = 'Approved' 
-                          AND status2 != 'Rejected'";
+                          AND status2 = 'Approved'";
 
         $rejectedQuery = "SELECT COUNT(*) as count 
                           FROM application 
                           WHERE department = 'Architecture' 
                           AND status0 = 'Approved' 
-                          AND (status1 = 'Rejected' OR status2 = 'Rejected')";
+                          AND status1 = 'Approved'
+                          AND status2 = 'Rejected'";
         $totalCount = $conn->query($totalQuery)->fetch_assoc()['count'];
         $pendingCount = $conn->query($pendingQuery)->fetch_assoc()['count'];
         $approvedCount = $conn->query($approvedQuery)->fetch_assoc()['count'];
