@@ -1,66 +1,68 @@
 <?php
-// --- CORS HEADERS ---
+// CORS headers
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// Handle preflight OPTIONS request
+// Handle preflight request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
-    exit();
+    exit;
 }
 
 // DB connection
 $host = "localhost";
-$port = 3308;
 $user = "root";
 $password = "";
-$database = "DMRC";
+$db = "dmrc";
 
-$conn = new mysqli($host, $user, $password, $database, $port);
-
+$conn = new mysqli($host, $user, $password, $db);
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => "Database connection failed"]);
-    exit();
+    exit;
 }
 
-// Read input
+// Get JSON input
 $data = json_decode(file_get_contents("php://input"), true);
-$email = trim($data['email'] ?? '');
-$inputPassword = trim($data['password'] ?? '');
 
-if (!$email || !$inputPassword) {
-    echo json_encode(["success" => false, "message" => "Missing email or password"]);
-    exit();
+// Validate input
+if (!isset($data['email']) || !isset($data['password'])) {
+    http_response_code(400);
+    echo json_encode(["success" => false, "message" => "Email and password are required"]);
+    exit;
 }
 
-// Check login
-$stmt = $conn->prepare("SELECT vendor_id, company_name, email, password FROM Vendors WHERE email = ?");
+$email = $conn->real_escape_string($data['email']);
+$password = $data['password'];
+
+// Check user by email
+$query = "SELECT UserId, password, role, company_name FROM users WHERE email = ?";
+$stmt = $conn->prepare($query);
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
-    $vendor = $result->fetch_assoc();
+    $user = $result->fetch_assoc();
 
-    if ($inputPassword === $vendor['password']) {
+    if (password_verify($password, $user['password'])) {
+        // Optionally generate token/session here
         echo json_encode([
             "success" => true,
             "message" => "Login successful",
-            "vendor" => [
-                "id" => $vendor['vendor_id'],
-                "company" => $vendor['company_name'],
-                "email" => $vendor['email']
-            ]
+            "UserId" => $user['UserId'],
+            "role" => $user['role'],
+            "companyName" => $user['company_name']
         ]);
     } else {
-        echo json_encode(["success" => false, "message" => "Incorrect password"]);
+        echo json_encode(["success" => false, "message" => "Invalid password"]);
     }
 } else {
-    echo json_encode(["success" => false, "message" => "Email not found"]);
+    echo json_encode(["success" => false, "message" => "User not found"]);
 }
 
 $stmt->close();
 $conn->close();
+?>

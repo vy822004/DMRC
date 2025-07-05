@@ -22,7 +22,7 @@ switch ($filter) {
     case 'pending':
         // Applications approved by status0, pending at status1, not rejected at status2
         $sql = "SELECT * FROM application 
-                WHERE department = 'Architecture' 
+                WHERE department = 'Electrical' 
                 AND status0 = 'Approved' 
                 AND status1 = 'Approved' 
                 AND status2 = 'Pending'";
@@ -31,7 +31,7 @@ switch ($filter) {
     case 'approved':
         // Fully approved applications at all three levels
         $sql = "SELECT * FROM application 
-                WHERE department = 'Architecture' 
+                WHERE department = 'Electrical' 
                 AND status0 = 'Approved' 
                 AND status1 = 'Approved' 
                 AND status2 = 'Approved'";
@@ -40,7 +40,7 @@ switch ($filter) {
     case 'rejected':
         // Applications rejected at status1 after being approved at status0
         $sql = "SELECT * FROM application 
-                WHERE department = 'Architecture' 
+                WHERE department = 'Electrical' 
                 AND status0 = 'Approved' 
                 AND status1 = 'Approved' 
                 AND status2 = 'Rejected'";;
@@ -49,7 +49,7 @@ switch ($filter) {
     case 'total':
         // All applications that are not rejected at first level and approved at second level
         $sql = "SELECT * FROM application 
-                WHERE department = 'Architecture' 
+                WHERE department = 'Electrical' 
                 AND status0 = 'Approved'
                 AND status1 = 'Approved'";
         break;
@@ -59,28 +59,28 @@ switch ($filter) {
         // Counts for dashboard
         $totalQuery = "SELECT COUNT(*) as count 
                        FROM application 
-                       WHERE department = 'Architecture' 
+                       WHERE department = 'Electrical' 
                        AND status0 = 'Approved'
                        AND status1 = 'Approved'
                        ";
 
         $pendingQuery = "SELECT COUNT(*) as count 
                          FROM application 
-                         WHERE department = 'Architecture' 
+                         WHERE department = 'Electrical' 
                          AND status0 = 'Approved' 
                          AND status1 = 'Approved' 
                          AND status2 = 'Pending'";
 
         $approvedQuery = "SELECT COUNT(*) as count 
                           FROM application 
-                          WHERE department = 'Architecture' 
+                          WHERE department = 'Electrical' 
                           AND status0 = 'Approved' 
                           AND status1 = 'Approved' 
                           AND status2 = 'Approved'";
 
         $rejectedQuery = "SELECT COUNT(*) as count 
                           FROM application 
-                          WHERE department = 'Architecture' 
+                          WHERE department = 'Electrical' 
                           AND status0 = 'Approved' 
                           AND status1 = 'Approved'
                           AND status2 = 'Rejected'";
