@@ -17,7 +17,7 @@ export default function Arch_Applications() {
 
   useEffect(() => {
     axios
-      .get('http://localhost/DMRC/archdashboard1.php')
+      .get('http://localhost/DMRC/elecdashboard1.php')
       .then((res) => {
         if (res.data.success) {
           const { totalCount, pendingCount, approvedCount, rejectedCount } = res.data;
@@ -37,7 +37,7 @@ export default function Arch_Applications() {
   }, []);
 
   const handleCardClick = (filterType) => {
-    navigate(`/application/architecture/list?filter=${filterType}`);
+    navigate(`/application/electrical/list?filter=${filterType}`);
   };
 
   return (
@@ -57,12 +57,7 @@ export default function Arch_Applications() {
           >
             Dashboard
           </button>
-          <button
-            className="block w-full text-left py-2 px-3 mb-2 rounded hover:bg-blue-700"
-            onClick={() => navigate('/application/architecture')}
-          >
-            Applications
-          </button>
+          
           <button
             className={`block w-full text-left py-2 px-3 mb-2 rounded ${
               activeTab === 'settings' ? 'bg-blue-600' : 'hover:bg-blue-700'

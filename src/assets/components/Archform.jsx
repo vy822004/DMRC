@@ -11,6 +11,7 @@ export default function Archform() {
   const [form, setForm] = useState({});
   const [fileInputs, setFileInputs] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const UserId = (parseInt(localStorage.getItem('UserId')));
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -27,7 +28,7 @@ export default function Archform() {
 
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("UserId", "12345456");
+    formData.append("UserId", UserId);
     formData.append("Department", "Architecture");
 
     Object.entries(form).forEach(([key, value]) => formData.append(key, value));

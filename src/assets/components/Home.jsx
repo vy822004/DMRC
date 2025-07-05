@@ -1,14 +1,50 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+const UserId = localStorage.getItem("UserId");
+const role = localStorage.getItem("role");
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleDashboardClick = () => {
+    const role = localStorage.getItem("role");
+
+    if (role === "vendor") {
+      navigate("/userdashboard");
+    } else if (role === "elec_head") {
+      navigate("/elec_applications");
+    } else if (role === "elec_1") {
+      navigate("/elec_applications1");
+    }  else if (role === "elec_2") {
+      navigate("/elec_applications2");
+    } else if (role === "arch_head") {
+      navigate("/arch_applications");
+    } else if (role === "arch_1") {
+      navigate("/arch_applications1");
+    }  else if (role === "arch_2") {
+      navigate("/arch_applications2");
+    } else if (role === "head") {
+      navigate("/head");
+    }
+     
+  };
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Header */}
       <header className="bg-red-700 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-          <h1 className="text-xl font-bold">दिल्ली मेट्रो रेल कॉर्पोरेशन लिमिटेड</h1>
-          <p className="text-sm">Delhi Metro Rail Corporation LTD.</p>
+          <div>
+            <h1 className="text-xl font-bold">दिल्ली मेट्रो रेल कॉर्पोरेशन लिमिटेड</h1>
+            <p className="text-sm">Delhi Metro Rail Corporation LTD.</p>
+          </div>
+          <button
+            onClick={handleDashboardClick}
+            className="mt-2 sm:mt-0 bg-white text-red-700 font-semibold px-4 py-2 rounded hover:bg-gray-200 transition"
+          >
+            Dashboard
+          </button>
         </div>
       </header>
 
@@ -20,20 +56,17 @@ const Home = () => {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6 mt-8">
-            <a href="" target="_blank" rel="noopener noreferrer" className="bg-red-500 hover:bg-red-600 text-white py-4 rounded-lg shadow text-lg font-semibold transition">
+            <a href="#" className="bg-red-500 hover:bg-red-600 text-white py-4 rounded-lg shadow text-lg font-semibold transition">
               Civil
             </a>
 
+            <Link to="/elecform" className="bg-yellow-400 hover:bg-yellow-500 text-black py-4 rounded-lg shadow text-lg font-semibold transition">
+              Electrical
+            </Link>
 
-              <Link to="/elecform" className="bg-yellow-400 hover:bg-yellow-500 text-black py-4 rounded-lg shadow text-lg font-semibold transition onhover:bg-yellow-500">
-              Electrical</Link>
-
-
-            
-              <Link to="/Archform" className="bg-teal-400 hover:bg-teal-500 text-black py-4 rounded-lg shadow text-lg font-semibold transition onhover:bg-teal-500">
-               Architecture
-              </Link>
-
+            <Link to="/Archform" className="bg-teal-400 hover:bg-teal-500 text-black py-4 rounded-lg shadow text-lg font-semibold transition">
+              Architecture
+            </Link>
           </div>
 
           <p className="text-red-600 font-medium">

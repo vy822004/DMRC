@@ -13,10 +13,12 @@ export default function Head() {
     {
       name: 'Civil',
       description: 'Manage civil infrastructure reports, monitor project progress, and validate quality standards as per DMRC norms.',
+
     },
     {
       name: 'Electrical',
       description: 'Oversee electrical component integration, safety compliance, and power systems documentation.',
+      route: '/Elec_Applications',
     },
     
   ];
@@ -43,7 +45,7 @@ export default function Head() {
       <main className="p-6">
         <header className="flex items-center justify-between border-b pb-4 mb-6">
           <div className="flex items-center gap-3">
-            <img src="/Metro.png" alt="Logo" className="w-10" />
+            <img src="/Metro.png" alt="DMRC Logo" className="w-10" />
             <h1 className="text-2xl font-bold">DMRC Department Head Portal</h1>
           </div>
           <div className="flex items-center gap-2">

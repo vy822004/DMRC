@@ -1,10 +1,10 @@
-// Arch_Applications.jsx
+// electrcial_Applications.jsx //dashboard
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Arch_Applications2() {
+export default function Arch_Applications1() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const navigate = useNavigate();
   const [stats, setStats] = useState({
@@ -17,7 +17,7 @@ export default function Arch_Applications2() {
 
   useEffect(() => {
     axios
-      .get('http://localhost/DMRC/archdashboard3.php')
+      .get('http://localhost/DMRC/elecdashboard2.php')
       .then((res) => {
         if (res.data.success) {
           const { totalCount, pendingCount, approvedCount, rejectedCount } = res.data;
@@ -37,7 +37,7 @@ export default function Arch_Applications2() {
   }, []);
 
   const handleCardClick = (filterType) => {
-    navigate(`/application/architecture2/list?filter=${filterType}`);
+    navigate(`/application/electrical1/list?filter=${filterType}`);
   };
 
   return (
@@ -74,7 +74,7 @@ export default function Arch_Applications2() {
         <header className="flex items-center justify-between border-b pb-4 mb-6">
           <div className="flex items-center gap-3">
             <img src="/Metro.png" alt="Logo" className="w-10" />
-            <h1 className="text-2xl font-bold">Architecture Admin Panel</h1>
+            <h1 className="text-2xl font-bold">Electrical Admin Panel</h1>
           </div>
           <div className="flex items-center gap-2">
             <img

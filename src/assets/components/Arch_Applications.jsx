@@ -57,12 +57,7 @@ export default function Arch_Applications() {
           >
             Dashboard
           </button>
-          <button
-            className="block w-full text-left py-2 px-3 mb-2 rounded hover:bg-blue-700"
-            onClick={() => navigate('/application/architecture')}
-          >
-            Applications
-          </button>
+         
           <button
             className={`block w-full text-left py-2 px-3 mb-2 rounded ${
               activeTab === 'settings' ? 'bg-blue-600' : 'hover:bg-blue-700'

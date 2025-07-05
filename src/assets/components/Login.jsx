@@ -1,123 +1,107 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      alert("Please enter both email and password.");
-      return;
-    }
+  const handleLogin = async (data) => {
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
 
     try {
-      // Step 1: Verify login credentials
-      const loginResponse = await fetch("http://localhost/DMRC/login.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const response = await fetch('http://localhost/DMRC/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
       });
 
-      const loginData = await loginResponse.json();
+      const result = await response.json();
 
-      if (loginData.success) {
-        // Step 2: Send OTP to email
-        const otpResponse = await fetch("http://localhost/DMRC/send_otp.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
+      if (result.success) {
+        console.log("Login API response:", result);
+        localStorage.setItem('UserId', result.UserId);
+localStorage.setItem('role', result.role);
 
-        const otpData = await otpResponse.json();
-
-        if (otpData.success) {
-          // Save email for OTP verification
-          localStorage.setItem("otpEmail", email);
-
-          alert("OTP sent to your email.");
-          navigate("/otp", {
-            state: {
-              from: "login",
-              email,
-            },
-          });
-        } else {
-          alert("OTP Error: " + (otpData.message || "OTP not sent"));
-        }
+console.log("Saved to localStorage", {
+  userId: localStorage.getItem("UserId"),
+  role: localStorage.getItem("role"),
+});
+        setSuccess('Login successful! Redirecting...');
+        setTimeout(() => {
+          window.location.href = '/'; // Change as needed
+        }, 2000);
       } else {
-        alert("Login failed: " + (loginData.message || "Invalid credentials"));
+        setError(result.message || 'Invalid credentials');
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Unable to connect to the server.");
+    } catch (err) {
+      console.error(err);
+      setError('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-gray-200 min-h-screen w-full flex items-center justify-center px-4">
-      <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-md sm:max-w-sm">
-        <div className="flex items-center justify-center mb-6 text-center">
-          <img
-            src="/Metro.png"
-            alt="Delhi Metro Logo"
-            className="h-10 w-10 sm:h-12 sm:w-12 mr-2"
-          />
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-800 leading-tight">
-            DMRC <span className="block">VENDORS</span>
-          </h1>
-        </div>
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center px-4 py-10"
+      style={{ backgroundImage: `url('/Metrobg.JPG')` }}
+    >
+      <div className="w-full max-w-md bg-white/60 backdrop-blur-md shadow-lg rounded-lg p-8">
+        <h2 className="text-2xl font-bold mb-2 text-center text-gray-800">Vendor Login</h2>
+        <p className="text-center text-sm text-gray-600 mb-6">
+          Sign in to access your DMRC dashboard
+        </p>
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        {error && <p className="text-red-600 mb-4 text-center">{error}</p>}
+        {success && <p className="text-green-600 mb-4 text-center">{success}</p>}
+
+        <form onSubmit={handleSubmit(handleLogin)} className="space-y-5">
           <div>
+            <label className="block mb-1 font-medium">Email</label>
             <input
               type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
-              required
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              {...register('email', { required: 'Email is required' })}
             />
+            {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
           </div>
 
           <div>
+            <label className="block mb-1 font-medium">Password</label>
             <input
               type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
-              required
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              {...register('password', { required: 'Password is required' })}
             />
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm text-gray-700 gap-2 sm:gap-0">
-            <label className="flex items-center">
-              <input type="checkbox" className="mr-2" />
-              Remember Me
-            </label>
-            <a href="#" className="text-red-600 hover:underline">
-              Forgot Password?
-            </a>
+            {errors.password && <p className="text-sm text-red-600 mt-1">{errors.password.message}</p>}
           </div>
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded-md hover:bg-red-700 transition text-sm sm:text-base"
+            disabled={isLoading}
+            className="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition"
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
-
-          <div className="w-full text-left text-gray-600 text-sm sm:text-base">
-            <Link to="/Signup" className="text-red-600 hover:underline">
-              Register
-            </Link>
-          </div>
         </form>
+
+        <p className="text-center mt-4 text-sm text-gray-700">
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-red-600 hover:underline">Register here</Link>
+        </p>
       </div>
     </div>
   );
