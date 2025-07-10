@@ -24,6 +24,11 @@ import ElecApplicationList from './assets/components/ElecApplicationList'
 import ElecApplicationList1 from './assets/components/ElecApplicationList1'
 import ElecApplicationList2 from './assets/components/ElecApplicationList2'
 import UserDashboard from './assets/components/UserDashboard'
+import UserApplicationList from './assets/components/UserApplicationList'
+
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+
 
 
 function App() {
@@ -61,6 +66,11 @@ function App() {
         <Route path="/application/electrical2/list" element={<ElecApplicationList2 />} />
        
         <Route path="/userdashboard" element={<UserDashboard />} />
+        <Route path="/applications" element={<UserApplicationList />} />
+
+        <Route path="/elec_application/:id" element={<ElecApplicationDetails />} />
+        <Route path="/arch_application/:id" element={<ArchApplicationDetails />} />
+
 
 
 
