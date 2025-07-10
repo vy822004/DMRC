@@ -9,6 +9,13 @@ export default function ArchApplicationDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [actionMessage, setActionMessage] = useState("");
+  const [remarks, setRemarks] = useState("");
+
+  const role = localStorage.getItem("role");
+  const department = "Architecture";
+
+  const editableRoles = ["arch_head", "arch_1", "arch_2"];
+  const canUpdate = editableRoles.includes(role);
 
   useEffect(() => {
     axios
@@ -27,14 +34,29 @@ export default function ArchApplicationDetails() {
       });
   }, [id]);
 
-  const handleApprove = () => {
-    // Placeholder - you can connect to your backend here
-    setActionMessage("Application approved successfully.");
-  };
+  const updateStatus = (newStatus) => {
+    const formData = new FormData();
+    formData.append("application_id", id);
+    formData.append("department", department);
+    formData.append("role", role);
+    formData.append("status", newStatus);
+    formData.append("remarks", remarks || "");
 
-  const handleReject = () => {
-    // Placeholder - you can connect to your backend here
-    setActionMessage("Application rejected.");
+    axios
+      .post("http://localhost/DMRC/update_status.php", formData)
+      .then((res) => {
+        if (res.data.success) {
+          setActionMessage(res.data.message);
+          setError("");
+        } else {
+          setError(res.data.message || "Update failed");
+          setActionMessage("");
+        }
+      })
+      .catch(() => {
+        setError("Failed to update status.");
+        setActionMessage("");
+      });
   };
 
   return (
@@ -42,11 +64,7 @@ export default function ArchApplicationDetails() {
       {/* Sidebar */}
       <aside className="bg-gray-800 text-white p-5">
         <div className="flex items-center gap-3 mb-10">
-          <img
-            src="/Metro.png"
-            alt="DMRC Logo"
-            className="w-10"
-          />
+          <img src="/Metro.png" alt="DMRC Logo" className="w-10" />
           <h2 className="text-xl font-bold">DMRC</h2>
         </div>
         <nav>
@@ -69,11 +87,7 @@ export default function ArchApplicationDetails() {
       <main className="p-6">
         <header className="flex items-center justify-between border-b pb-4 mb-6">
           <div className="flex items-center gap-3">
-            <img
-              src="/Metro.png"
-              alt="Logo"
-              className="w-10"
-            />
+            <img src="/Metro.png" alt="Logo" className="w-10" />
             <h1 className="text-2xl font-bold">Application Details - {id}</h1>
           </div>
           <div className="flex items-center gap-2">
@@ -82,7 +96,7 @@ export default function ArchApplicationDetails() {
               alt="User"
               className="w-10 h-10 rounded-full"
             />
-            <span>DMRC Admin</span>
+            <span>DMRC Reviewer</span>
           </div>
         </header>
 
@@ -105,7 +119,7 @@ export default function ArchApplicationDetails() {
                     <span className="text-gray-600 font-semibold capitalize">
                       {key.replace(/_/g, ' ')}:
                     </span>
-                    <div className="text-gray-900">
+                    <div className="text-gray-900 break-words">
                       {isPdf ? (
                         <a
                           href={fileUrl}
@@ -124,20 +138,38 @@ export default function ArchApplicationDetails() {
               })}
             </div>
 
-            {/* Action Buttons */}
-            <div className="mt-6 flex gap-3">
-              <button
-                onClick={handleApprove}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-              >
-                Approve
-              </button>
-              <button
-                onClick={handleReject}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Reject
-              </button>
+            {/* Remarks + Buttons */}
+            {canUpdate && (
+              <>
+                <div className="mt-6">
+                  <label className="block text-gray-700 mb-1 font-medium">Remarks (optional):</label>
+                  <textarea
+                    value={remarks}
+                    onChange={(e) => setRemarks(e.target.value)}
+                    className="w-full border rounded p-2"
+                    rows="3"
+                    placeholder="Add your remarks for approval/rejection..."
+                  />
+                </div>
+
+                <div className="mt-4 flex gap-3">
+                  <button
+                    onClick={() => updateStatus("Approved")}
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => updateStatus("Rejected")}
+                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </>
+            )}
+
+            <div className="mt-6">
               <button
                 onClick={() => navigate(-1)}
                 className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600"

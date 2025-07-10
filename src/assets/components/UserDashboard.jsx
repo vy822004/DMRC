@@ -31,19 +31,19 @@ const UserDashboard = () => {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <Link to="/applications?filter=total" className="bg-gray-100 p-4 rounded hover:shadow-lg transition">
               <p className="text-sm text-gray-500">Total Submitted</p>
-              <p className="text-xl font-bold text-red-600">8</p>
+              <p className="text-xl font-bold text-red-600"></p>
             </Link>
             <Link to="/applications?filter=pending" className="bg-gray-100 p-4 rounded hover:shadow-lg transition">
               <p className="text-sm text-gray-500">Pending</p>
-              <p className="text-xl font-bold text-yellow-500">3</p>
+              <p className="text-xl font-bold text-yellow-500"></p>
             </Link>
             <Link to="/applications?filter=approved" className="bg-gray-100 p-4 rounded hover:shadow-lg transition">
               <p className="text-sm text-gray-500">Approved</p>
-              <p className="text-xl font-bold text-green-600">4</p>
+              <p className="text-xl font-bold text-green-600"></p>
             </Link>
             <Link to="/applications?filter=rejected" className="bg-gray-100 p-4 rounded hover:shadow-lg transition">
               <p className="text-sm text-gray-500">Rejected</p>
-              <p className="text-xl font-bold text-red-500">1</p>
+              <p className="text-xl font-bold text-red-500"></p>
             </Link>
           </div>
         </section>
