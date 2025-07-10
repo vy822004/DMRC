@@ -111,12 +111,12 @@ if ($stmt->execute()) {
     $applicationId = $conn->insert_id;
 
     // Insert into Application table
-    $appSql = "INSERT INTO Application (department, Application_id, status0, status1, status2) 
-               VALUES (?, ?, 'Pending', 'Pending', 'Pending')";
+    $appSql = "INSERT INTO Application (department, Application_id, status0, status1, status2,UserId) 
+               VALUES (?, ?, 'Pending', 'Pending', 'Pending',?)";
     $appStmt = $conn->prepare($appSql);
 
     if ($appStmt) {
-        $appStmt->bind_param("si", $Department, $applicationId);
+        $appStmt->bind_param("sii", $Department, $applicationId,$UserId);
         if ($appStmt->execute()) {
             echo json_encode([
                 "success" => true,
